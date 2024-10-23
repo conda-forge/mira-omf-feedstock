@@ -1,5 +1,5 @@
 {% set name = "mira-omf" %}
-{% set version = "3.2.0" %}
+{% set version = "3.2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/MiraGeoscience/omf/archive/v{{ version }}.tar.gz
-  sha256: 7afbc81476c40e2ec6d8528f74f4f3e247df1b41bceaf8559a63f554bac85c3f
+  sha256: 644c75eba57387d8c8aa8a31e061a84f8245d4da7e4d8290a02f1cdabdce50df
 
 build:
   noarch: python
@@ -31,7 +31,7 @@ requirements:
     - numpy >=1.23.5,<1.24.0
     - six >=1.16.0,<2.0
     - vectormath >=0.2.0,<0.2.1
-    
+
 
 test:
   imports:
