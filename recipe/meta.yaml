@@ -1,5 +1,7 @@
 {% set name = "mira-omf" %}
 {% set version = "3.2.1" %}
+{% set python_min = "3.9" %}
+{% set python_max = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +14,7 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
   entry_points:
     - geoh5_to_omf  = omf.scripts.geoh5_to_omf:main
     - omf_to_geoh5 = omf.scripts.omf_to_geoh5:main
@@ -20,11 +22,11 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.9.0,<3.11
+    - python {{ python_min }}
     - poetry-core >=1.0.0
     - setuptools
   run:
-    - python >=3.9.0,<3.11
+    - python >={{ python_min }},<{{ python_max }}
     - geoh5py >=0.9.0,<0.10.0
     - properties >=0.6.0,<0.7.0
     - pypng 0.20220715.*
@@ -40,6 +42,7 @@ test:
     - pytest tests/version_test.py
     - pip list
   requires:
+    - python {{ python_min }}
     - pip
     - pytest
     - tomli
