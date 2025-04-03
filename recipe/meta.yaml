@@ -66,5 +66,4 @@ about:
 
 extra:
   recipe-maintainers:
-    - SophieCurinier
-    - sebhmg
+    - conda-forge/geoh5py
