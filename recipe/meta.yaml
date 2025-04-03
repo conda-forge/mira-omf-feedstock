@@ -1,7 +1,6 @@
 {% set name = "mira-omf" %}
-{% set version = "3.2.1" %}
-{% set python_min = "3.9" %}
-{% set python_max = "3.11" %}
+{% set version = "3.3.0" %}
+{% set python_min = "3.10" %}
 
 package:
   name: {{ name|lower }}
@@ -9,12 +8,12 @@ package:
 
 source:
   url: https://github.com/MiraGeoscience/omf/archive/v{{ version }}.tar.gz
-  sha256: 644c75eba57387d8c8aa8a31e061a84f8245d4da7e4d8290a02f1cdabdce50df
+  sha256: a59209039739c89a47710afe2a6814186c529f12ed73d89ada405deae19e43cd
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
   entry_points:
     - geoh5_to_omf  = omf.scripts.geoh5_to_omf:main
     - omf_to_geoh5 = omf.scripts.omf_to_geoh5:main
@@ -26,12 +25,12 @@ requirements:
     - poetry-core >=1.0.0
     - setuptools
   run:
-    - python >={{ python_min }},<{{ python_max }}
-    - geoh5py >=0.9.0,<0.10.0
-    - properties >=0.6.0,<0.7.0
+    - python >={{ python_min }}
+    - geoh5py >=0.10.0,<0.11.dev
+    - properties >=0.6.0,<0.7.dev
     - pypng 0.20220715.*
-    - numpy >=1.23.5,<1.24.0
-    - six >=1.16.0,<2.0
+    - numpy >=1.26.0,<1.27.dev
+    - six >=1.16.0,<2.dev
     - vectormath >=0.2.0,<0.2.1
 
 
@@ -39,17 +38,15 @@ test:
   imports:
     - omf
   commands:
-    - pytest tests/version_test.py
+    - pytest --ignore=tests/version_test.py
     - pip list
   requires:
     - python {{ python_min }}
     - pip
     - pytest
-    - tomli
   source_files:
-    - tests/version_test.py
-    - pyproject.toml
-    - README.rst
+    - tests/
+    - docs/images/PointSetGeometry.png
 
 about:
   home: https://www.mirageoscience.com/mining-industry-software/python-integration/
@@ -67,5 +64,4 @@ about:
 
 extra:
   recipe-maintainers:
-    - SophieCurinier
-    - sebhmg
+    - conda-forge/geoh5py
