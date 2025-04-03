@@ -1,7 +1,6 @@
 {% set name = "mira-omf" %}
 {% set version = "3.3.0" %}
 {% set python_min = "3.9" %}
-{% set python_max = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -26,7 +25,7 @@ requirements:
     - poetry-core >=1.0.0
     - setuptools
   run:
-    - python >={{ python_min }},<{{ python_max }}
+    - python >={{ python_min }}
     - geoh5py >=0.10.0,<0.11.dev
     - properties >=0.6.0,<0.7.dev
     - pypng 0.20220715.*
