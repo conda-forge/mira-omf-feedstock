@@ -16,7 +16,6 @@ API library for Open Mining Format, a new standard for mining data backed by the
 **Note:**
 This is a fork created by Mira Geoscience for interoperability with the geoh5 file format.
 
-
 Current build status
 ====================
 
