@@ -38,17 +38,15 @@ test:
   imports:
     - omf
   commands:
-    - pytest tests/version_test.py
+    - pytest --ignore=tests/version_test.py
     - pip list
   requires:
     - python {{ python_min }}
     - pip
     - pytest
-    - tomli
   source_files:
-    - tests/version_test.py
-    - pyproject.toml
-    - README.rst
+    - tests/
+    - docs/images/PointSetGeometry.png
 
 about:
   home: https://www.mirageoscience.com/mining-industry-software/python-integration/
