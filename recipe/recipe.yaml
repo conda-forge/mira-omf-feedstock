@@ -14,7 +14,7 @@ source:
   sha256: a59209039739c89a47710afe2a6814186c529f12ed73d89ada405deae19e43cd
 
 build:
-  number: 1
+  number: 2
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   python:
@@ -41,7 +41,10 @@ tests:
   - python:
       imports:
         - omf
-      pip_check: false
+        # dependency imports
+        - geoh5py
+        - properties
+      pip_check: false  # something wrong with properties 0.6.1, but installation seems correct nonetheless
       python_version: ${{ python_min }}.*
   - files:
       source:
