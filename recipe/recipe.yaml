@@ -46,18 +46,17 @@ tests:
         - properties
       pip_check: false  # something wrong with properties 0.6.1, but installation seems correct nonetheless
       python_version: ${{ python_min }}.*
-  - files:
+  - script:
+      - pytest --ignore=tests/version_test.py
+      - pip list
+    requirements:
+      run:
+        - pip
+        - pytest
+    files:
       source:
         - tests/
         - docs/images/PointSetGeometry.png
-    requirements:
-      run:
-        - python ${{ python_min }}.*
-        - pip
-        - pytest
-    script:
-      - pytest --ignore=tests/version_test.py
-      - pip list
 
 about:
   summary: API library for Open Mining Format, a new standard for mining data backed by the Global Mining Standards & Guidelines Group.
