@@ -35,7 +35,7 @@ requirements:
     - pypng 0.20220715.*
     - numpy >=1.26.0,<1.27.dev
     - six >=1.16.0,<2.dev
-    - vectormath >=0.2.0,<0.2.1
+    - vectormath 0.2.*
 
 tests:
   - python:
