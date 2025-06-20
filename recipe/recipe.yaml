@@ -30,8 +30,8 @@ requirements:
     - setuptools
   run:
     - python >=${{ python_min }}
-    - geoh5py >=0.10.0,<0.11.dev
     - properties >=0.6.0,<0.7.dev
+    - geoh5py >=0.11.0, <0.12.dev
     - pypng 0.20220715.*
     - numpy >=1.26.0,<1.27.dev
     - six >=1.16.0,<2.dev
