@@ -30,11 +30,13 @@ requirements:
     - setuptools
   run:
     - python >=${{ python_min }}
-    - properties >=0.6.0,<0.7.dev
+    # Mira packages
     - geoh5py >=0.11.0, <0.12.dev
+    # direct dependencies
+    - numpy >=1.26.0, <1.27.dev
+    - properties >=0.6, <0.7.dev
     - pypng 0.20220715.*
-    - numpy >=1.26.0,<1.27.dev
-    - six >=1.16.0,<2.dev
+    - six >=1.16.0, <2.0.dev
     - vectormath 0.2.*
 
 tests:
