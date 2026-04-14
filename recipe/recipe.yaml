@@ -2,8 +2,9 @@ schema_version: 1
 
 context:
   name: mira-omf
-  version: "3.3.1"
+  version: "3.3.2"
   python_min: '3.10'
+  module_name: omf
 
 package:
   name: ${{ name|lower }}
@@ -11,12 +12,14 @@ package:
 
 source:
   url: https://github.com/MiraGeoscience/omf/archive/v${{ version }}.tar.gz
-  sha256: 2964e02d9d22ed663ad40fe9b49881711f24a056dfa6453ef26f3120c6df447b
+  sha256: 6efdeb9ab8abeb0ce15822bede4ed9a71c9df2fb065474d20eda5efd7779c54d
 
 build:
   number: 0
   noarch: python
-  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script:
+    - export POETRY_DYNAMIC_VERSIONING_BYPASS=${{ version }}
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   python:
     entry_points:
       - geoh5_to_omf = omf.scripts.geoh5_to_omf:main
@@ -24,30 +27,32 @@ build:
 
 requirements:
   host:
-    - pip
     - python ${{ python_min }}.*
-    - poetry-core >=1.0.0
+    - pip
+    - poetry-core >=1.8.0
+    - poetry-dynamic-versioning >=1.9, 1.*
     - setuptools
   run:
     - python >=${{ python_min }}
     # Mira packages
-    - geoh5py >=0.11.0, <0.12.dev
+    - geoh5py 0.12.*
     # direct dependencies
-    - numpy >=1.26.0, <1.27.dev
-    - properties >=0.6, <0.7.dev
+    - numpy 1.26.*
+    - properties 0.6.*
     - pypng 0.20220715.*
-    - six >=1.16.0, <2.0.dev
+    - six >=1.16.0, 1.*
     - vectormath 0.2.*
 
 tests:
   - python:
+      python_version: ${{ python_min }}.*
       imports:
-        - omf
+        - ${{ module_name }}
+        - ${{ module_name }}._version
         # dependency imports
         - geoh5py
         - properties
       pip_check: false  # something wrong with properties 0.6.1, but installation seems correct nonetheless
-      python_version: ${{ python_min }}.*
   - script:
       - pytest --ignore=tests/version_test.py
       - pip list
@@ -59,6 +64,9 @@ tests:
       source:
         - tests/
         - docs/images/PointSetGeometry.png
+  - package_contents:
+      files:
+        - site-packages/${{ module_name }}/_version.py
 
 about:
   summary: API library for Open Mining Format, a new standard for mining data backed by the Global Mining Standards & Guidelines Group.
@@ -67,10 +75,10 @@ about:
 
     **Note:**
     This is a fork created by Mira Geoscience for interoperability with the geoh5 file format.
-
   license: MIT
   license_file:
     - LICENSE
+    - THIRD_PARTY_SOFTWARE.rst
   homepage: https://www.mirageoscience.com/mining-industry-software/python-integration/
   repository: https://github.com/MiraGeoscience/omf
 
