@@ -75,7 +75,6 @@ about:
 
     **Note:**
     This is a fork created by Mira Geoscience for interoperability with the geoh5 file format.
-
   license: MIT
   license_file:
     - LICENSE
