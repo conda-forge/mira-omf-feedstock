@@ -27,8 +27,8 @@ build:
 
 requirements:
   host:
-    - pip
     - python ${{ python_min }}.*
+    - pip
     - poetry-core >=1.8.0
     - poetry-dynamic-versioning >=1.9, 1.*
     - setuptools
@@ -45,6 +45,7 @@ requirements:
 
 tests:
   - python:
+      python_version: ${{ python_min }}.*
       imports:
         - ${{ module_name }}
         - ${{ module_name }}._version
@@ -52,7 +53,6 @@ tests:
         - geoh5py
         - properties
       pip_check: false  # something wrong with properties 0.6.1, but installation seems correct nonetheless
-      python_version: ${{ python_min }}.*
   - script:
       - pytest --ignore=tests/version_test.py
       - pip list
