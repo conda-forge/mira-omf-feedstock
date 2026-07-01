@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: mira-omf
-  version: "3.3.2"
+  version: "3.4.0"
   python_min: '3.10'
   module_name: omf
 
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://github.com/MiraGeoscience/omf/archive/v${{ version }}.tar.gz
-  sha256: 6efdeb9ab8abeb0ce15822bede4ed9a71c9df2fb065474d20eda5efd7779c54d
+  sha256: 1ba8e2dcd64e36aefe1790f7448f09727730e9d8aa589e7525cb2865f06bbcd0
 
 build:
   number: 0
